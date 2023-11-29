@@ -33,9 +33,22 @@ export default class Task {
     duration: number;
   } {
     return {
-      start: this.startDate?.toLocaleDateString("en-US"),
-      end: this.endDate?.toLocaleDateString("en-US"),
+      start: this.startDate.toLocaleDateString("en-US"),
+      end: this.endDate.toLocaleDateString("en-US"),
       duration: this.getDuration(),
     };
   }
 }
+
+const startDateTime = new Date("November 10, 2023 01:00:00");
+const endDateTime = new Date("November 30, 2023 01:00:00");
+const durationInSeconds = 9000;
+
+const task = new Task(startDateTime, endDateTime);
+console.log(task.update());
+
+task.startDate = new Date("November 15, 2023 01:00:00");
+console.log(task.update());
+
+task.endDate = new Date("December 15, 2023 01:00:00");
+console.log(task.update());
