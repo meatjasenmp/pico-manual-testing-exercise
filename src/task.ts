@@ -28,9 +28,9 @@ export default class Task {
   }
 
   update(): {
-    start: string | undefined;
-    end: string | undefined;
-    duration: number | null;
+    start: string;
+    end: string
+    duration: number;
   } {
     return {
       start: this.startDate?.toLocaleDateString("en-US"),
