@@ -22,6 +22,10 @@ export default class Task {
   get endDate(): Date {
     return this._endDate;
   }
+  
+  getDuration(): number {
+    return this._endDate.getTime() - this._startDate.getTime();
+  }
 
   update(): {
     start: string | undefined;
@@ -31,7 +35,7 @@ export default class Task {
     return {
       start: this.startDate?.toLocaleDateString("en-US"),
       end: this.endDate?.toLocaleDateString("en-US"),
-      duration: this._endDate.getTime() - this._startDate.getTime(),
+      duration: this.getDuration(),
     };
   }
 }

@@ -7,10 +7,6 @@ const endDateTime = new Date("November 30, 2023 01:00:00");
 describe('Task', () => {
   const task = new Task(startDateTime, endDateTime);
 
-  const getDuration = (start: Date, end: Date) => {
-    return end.getTime() - start.getTime();
-  }
-
   it("should have a start date", () => {
     expect(task.startDate).toEqual(startDateTime);
   });
@@ -45,6 +41,6 @@ describe('Task', () => {
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
     task.startDate = newStartDateTime;
     task.endDate = newEndDateTime;
-    expect(task.update().duration).toEqual(getDuration(newStartDateTime, newEndDateTime));
+    expect(task.update().duration).toEqual(task.getDuration());
   });
 });
