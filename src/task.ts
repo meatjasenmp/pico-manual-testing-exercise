@@ -52,10 +52,3 @@ export default class Task {
     };
   }
 }
-
-const startDateTime = new Date("November 10, 2023 01:00:00");
-const endDateTime = new Date("November 30, 2023 01:00:00");
-const newEndTime = new Date("December 15, 2023 01:00:00");
-
-const task = new Task(startDateTime, endDateTime);
-console.log(task.update(startDateTime, newEndTime, 9000));
