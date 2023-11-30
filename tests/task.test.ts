@@ -53,7 +53,7 @@ describe('Task', () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
     const duration = 9000
-    expect(task.update(newStartDateTime, newEndDateTime, duration).duration).toEqual(duration);
+    expect(task.update(newStartDateTime, newEndDateTime, duration).durationInSeconds).toEqual(duration / 1000);
   });
   
   it("should log a message if the duration argued is not the same as the duration calculated from start and end dates", () => {
