@@ -25,7 +25,7 @@ export default class Task {
   }
   
   getDuration(): number {
-    return this._endDate.getTime() - this._startDate.getTime();
+    return this._endDate.getTime() - this._startDate.getTime() / 1000;
   }
 
   update(start: Date, end: Date, duration: number | null): {

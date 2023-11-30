@@ -46,7 +46,7 @@ describe('Task', () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
     task.update(newStartDateTime, newEndDateTime, null);
-    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime());
+    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime() / 1000);
   });
   
   it("should have the correct duration argued", () => {
