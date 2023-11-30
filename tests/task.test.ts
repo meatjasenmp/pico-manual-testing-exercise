@@ -16,21 +16,21 @@ describe('Task', () => {
   });
   
   it("should have a duration", () => {
-    expect(task.getDuration()).toEqual(endDateTime.getTime() - startDateTime.getTime());
+    expect(task.getDuration()).toEqual(endDateTime.getTime() - startDateTime.getTime() / 1000);
   });
 
   it("should update the start date and have the correct duration", () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
     task.update(newStartDateTime, endDateTime, null);
     expect(task.startDate).toEqual(newStartDateTime);
-    expect(task.getDuration()).toEqual(task.endDate.getTime() - newStartDateTime.getTime());
+    expect(task.getDuration()).toEqual(task.endDate.getTime() - newStartDateTime.getTime() / 1000);
   });
 
   it("should update the end date and have the correct duration", () => {
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
     task.update(startDateTime, newEndDateTime, null);
     expect(task.endDate).toEqual(newEndDateTime);
-    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - task.startDate.getTime());
+    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - task.startDate.getTime() / 1000);
   });
 
   it("should update the start and end date and have the correct duration", () => {
@@ -39,7 +39,7 @@ describe('Task', () => {
     task.update(newStartDateTime, newEndDateTime, null);
     expect(task.startDate).toEqual(newStartDateTime);
     expect(task.endDate).toEqual(newEndDateTime);
-    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime());
+    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime() / 1000);
   });
 
   it("should have the correct duration", () => {
