@@ -21,14 +21,14 @@ describe('Task', () => {
 
   it("should update the start date and have the correct duration", () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
-    task.startDate = newStartDateTime;
+    task.update(newStartDateTime, endDateTime, null);
     expect(task.startDate).toEqual(newStartDateTime);
     expect(task.getDuration()).toEqual(task.endDate.getTime() - newStartDateTime.getTime());
   });
 
   it("should update the end date and have the correct duration", () => {
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
-    task.endDate = newEndDateTime;
+    task.update(startDateTime, newEndDateTime, null);
     expect(task.endDate).toEqual(newEndDateTime);
     expect(task.getDuration()).toEqual(newEndDateTime.getTime() - task.startDate.getTime());
   });
@@ -36,8 +36,7 @@ describe('Task', () => {
   it("should update the start and end date and have the correct duration", () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
-    task.startDate = newStartDateTime;
-    task.endDate = newEndDateTime;
+    task.update(newStartDateTime, newEndDateTime, null);
     expect(task.startDate).toEqual(newStartDateTime);
     expect(task.endDate).toEqual(newEndDateTime);
     expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime());
@@ -46,8 +45,14 @@ describe('Task', () => {
   it("should have the correct duration", () => {
     const newStartDateTime = new Date("November 15, 2023 01:00:00");
     const newEndDateTime = new Date("December 15, 2023 01:00:00");
-    task.startDate = newStartDateTime;
-    task.endDate = newEndDateTime;
-    expect(task.update().duration).toEqual(task.getDuration());
+    task.update(newStartDateTime, newEndDateTime, null);
+    expect(task.getDuration()).toEqual(newEndDateTime.getTime() - newStartDateTime.getTime());
+  });
+  
+  it("should have the correct duration argued", () => {
+    const newStartDateTime = new Date("November 15, 2023 01:00:00");
+    const newEndDateTime = new Date("December 15, 2023 01:00:00");
+    const duration = 9000
+    expect(task.update(newStartDateTime, newEndDateTime, duration).duration).toEqual(duration);
   });
 });

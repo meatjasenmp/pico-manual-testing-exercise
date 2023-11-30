@@ -1,6 +1,7 @@
 export default class Task {
   _startDate: Date;
   _endDate: Date;
+  _duration: number | undefined | null;
 
   constructor(start: Date, end: Date) {
     this._startDate = new Date(start);
@@ -27,15 +28,19 @@ export default class Task {
     return this._endDate.getTime() - this._startDate.getTime();
   }
 
-  update(): {
+  update(start: Date, end: Date, duration: number | null): {
     start: string;
     end: string
     duration: number;
   } {
+    this.startDate = new Date(start);
+    this.endDate = new Date(end);
+    this._duration = duration || this.getDuration();
+    
     return {
       start: this.startDate.toLocaleDateString("en-US"),
       end: this.endDate.toLocaleDateString("en-US"),
-      duration: this.getDuration(),
+      duration: this._duration,
     };
   }
 }
