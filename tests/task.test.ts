@@ -55,4 +55,13 @@ describe('Task', () => {
     const duration = 9000
     expect(task.update(newStartDateTime, newEndDateTime, duration).duration).toEqual(duration);
   });
+  
+  it("should log a message if the duration argued is not the same as the duration calculated from start and end dates", () => {
+    const newStartDateTime = new Date("November 15, 2023 01:00:00");
+    const newEndDateTime = new Date("December 15, 2023 01:00:00");
+    const duration = 9000
+    const spy = jest.spyOn(console, 'info');
+    task.update(newStartDateTime, newEndDateTime, duration);
+    expect(spy).toHaveBeenCalledWith("duration argued is not the same as the duration calculated from start and end dates");
+  });
 });

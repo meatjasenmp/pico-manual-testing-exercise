@@ -33,9 +33,17 @@ export default class Task {
     end: string
     duration: number;
   } {
+    
     this.startDate = new Date(start);
     this.endDate = new Date(end);
-    this._duration = duration || this.getDuration();
+    (() => {
+      if (duration && duration !== this.getDuration()) {
+        console.info("duration argued is not the same as the duration calculated from start and end dates");
+        this._duration = duration;
+        return;
+      }
+      this._duration = this.getDuration();
+    })();
     
     return {
       start: this.startDate.toLocaleDateString("en-US"),
@@ -44,3 +52,10 @@ export default class Task {
     };
   }
 }
+
+const startDateTime = new Date("November 10, 2023 01:00:00");
+const endDateTime = new Date("November 30, 2023 01:00:00");
+const newEndTime = new Date("December 15, 2023 01:00:00");
+
+const task = new Task(startDateTime, endDateTime);
+console.log(task.update(startDateTime, newEndTime, 9000));
