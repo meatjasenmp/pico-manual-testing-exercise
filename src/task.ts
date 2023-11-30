@@ -24,7 +24,7 @@ export default class Task {
     return this._endDate;
   }
   
-  getDuration(): number {
+  getDurationInSeconds(): number {
     return this._endDate.getTime() - this._startDate.getTime() / 1000;
   }
 
@@ -37,12 +37,12 @@ export default class Task {
     this.startDate = new Date(start);
     this.endDate = new Date(end);
     (() => {
-      if (duration && duration !== this.getDuration()) {
+      if (duration && duration !== this.getDurationInSeconds()) {
         console.info("duration argued is not the same as the duration calculated from start and end dates");
         this._duration = duration;
         return;
       }
-      this._duration = this.getDuration();
+      this._duration = this.getDurationInSeconds();
     })();
     
     return {
