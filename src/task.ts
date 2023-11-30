@@ -31,7 +31,7 @@ export default class Task {
   update(start: Date, end: Date, duration: number | null): {
     start: string;
     end: string
-    duration: number;
+    durationInSeconds: number;
   } {
     
     this.startDate = new Date(start);
@@ -48,7 +48,7 @@ export default class Task {
     return {
       start: this.startDate.toLocaleDateString("en-US"),
       end: this.endDate.toLocaleDateString("en-US"),
-      duration: this._duration,
+      durationInSeconds: this._duration / 1000,
     };
   }
 }
